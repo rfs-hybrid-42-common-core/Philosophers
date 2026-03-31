@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 15:04:25 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/31 02:59:31 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/03/31 14:29:37 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,20 +113,25 @@ static void	start_processes(t_data *data)
  * @brief Orchestrates the main simulation flow in the parent process.
  * @details 
  * 1. Starts all philosopher processes.
- * 2. If a meal limit is set, forks a dedicated monitoring process.
- * 3. Blocks on `waitpid(-1)` waiting for ANY child process to terminate 
+ * 2. Fires the `ready` semaphore to wake all child processes simultaneously.
+ * 3. If a meal limit is set, forks a dedicated monitoring process.
+ * 4. Blocks on `waitpid(-1)` waiting for ANY child process to terminate 
  * (due to death, full meals, or manual kill).
- * 4. Kills and reaps all child processes (philosophers + monitor) to ensure 
+ * 5. Kills and reaps all child processes (philosophers + monitor) to ensure 
  * a clean exit without zombies or leaks.
  * @param data Pointer to the main data structure.
  */
 void	simulation(t_data *data)
 {
 	pid_t	meal_pid;
+	long	i;
 
 	meal_pid = -1;
 	data->start_time = ft_gettimeofday_ms();
 	start_processes(data);
+	i = -1;
+	while (++i < data->total_philos)
+		safe_sem(data, data->ready, POST);
 	if (data->total_meals != -1)
 		meal_pid = start_meal_monitor(data);
 	waitpid(-1, NULL, 0);

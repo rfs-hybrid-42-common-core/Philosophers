@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 01:07:04 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/31 02:35:42 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/03/31 14:28:53 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,12 @@
  * @brief Name of the semaphore used to count how many philosophers are full.
  */
 # define SEM_FULL	"/philo_full"
+
+/**
+ * @def SEM_READY
+ * @brief Name of the semaphore used to synchronize the start of all processes.
+ */
+# define SEM_READY	"/philo_ready"
 
 /**
  * @def SEM_WAITER
@@ -269,6 +275,7 @@ typedef struct s_philo
  * @var start_time    Timestamp (in ms) when the simulation officially begins.
  * @var print         Semaphore used to serialize output operations.
  * @var full          Semaphore used to count how many philosophers are full.
+ * @var ready         Semaphore used to synchronize the start of all processes.
  * @var waiter        Semaphore used to limit concurrent diners (deadlock
  * prevent).
  * @var forks         Semaphore representing the pool of available forks.
@@ -284,6 +291,7 @@ typedef struct s_data
 	int64_t		start_time;
 	sem_t		*print;
 	sem_t		*full;
+	sem_t		*ready;
 	sem_t		*waiter;
 	sem_t		*forks;
 	t_philo		*philos;

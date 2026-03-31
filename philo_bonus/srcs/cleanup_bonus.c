@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 17:10:24 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/31 02:37:07 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/03/31 14:15:01 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 static void	unlink_semaphores(t_data *data)
 {
 	if (sem_unlink(SEM_PRINT) != 0 || sem_unlink(SEM_FULL) != 0
-		|| sem_unlink(SEM_WAITER) != 0 || sem_unlink(SEM_FORKS) != 0)
+		|| sem_unlink(SEM_READY) != 0 || sem_unlink(SEM_WAITER) != 0
+		|| sem_unlink(SEM_FORKS) != 0)
 		exit_error(data, SEM_UNLINK);
 }
 
@@ -44,6 +45,7 @@ void	close_semaphores(t_data *data)
 
 	if ((data->print != SEM_FAILED && sem_close(data->print) != 0)
 		|| (data->full != SEM_FAILED && sem_close(data->full) != 0)
+		|| (data->ready != SEM_FAILED && sem_close(data->ready) != 0)
 		|| (data->waiter != SEM_FAILED && sem_close(data->waiter) != 0)
 		|| (data->forks != SEM_FAILED && sem_close(data->forks) != 0))
 		exit_error(data, SEM_CLOSE);

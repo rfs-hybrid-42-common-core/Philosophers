@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 00:18:20 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/31 02:26:14 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/03/31 14:21:09 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,9 +140,9 @@ static void	parse_args(t_data *data, int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	data->start_time = 0;
-	data->philos = NULL;
 	data->print = SEM_FAILED;
 	data->full = SEM_FAILED;
+	data->ready = SEM_FAILED;
 	data->waiter = SEM_FAILED;
 	data->forks = SEM_FAILED;
 }
@@ -169,13 +169,16 @@ void	init(t_data *data, int argc, char **argv)
 		philo_data(data, &data->philos[i], i);
 	sem_unlink(SEM_PRINT);
 	sem_unlink(SEM_FULL);
+	sem_unlink(SEM_READY);
 	sem_unlink(SEM_WAITER);
 	sem_unlink(SEM_FORKS);
 	data->print = sem_open(SEM_PRINT, O_CREAT, 0644, 1);
 	data->full = sem_open(SEM_FULL, O_CREAT, 0644, 0);
+	data->ready = sem_open(SEM_READY, O_CREAT, 0644, 0);
 	data->waiter = sem_open(SEM_WAITER, O_CREAT, 0644, data->total_philos - 1);
 	data->forks = sem_open(SEM_FORKS, O_CREAT, 0644, data->total_philos);
 	if (data->print == SEM_FAILED || data->full == SEM_FAILED
-		|| data->waiter == SEM_FAILED || data->forks == SEM_FAILED)
+		|| data->ready == SEM_FAILED || data->waiter == SEM_FAILED
+		|| data->forks == SEM_FAILED)
 		exit_error(data, SEM_OPEN);
 }

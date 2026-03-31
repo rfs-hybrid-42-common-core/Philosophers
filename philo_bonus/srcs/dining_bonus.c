@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 15:43:32 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/31 03:02:44 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/03/31 14:29:19 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,17 +120,19 @@ static void	philo_routine(t_data *data, t_philo *philo)
  * @fn void dining(t_philo *philo)
  * @brief The main routine for a philosopher child process.
  * @details 
- * 1. Initializes local start times.
- * 2. Starts the monitoring thread for this specific process.
- * 3. Handles the single philosopher edge case.
- * 4. Staggers even-numbered philosophers to reduce initial contention.
- * 5. Enters the infinite `philo_routine` loop.
+ * 1. Blocks on the `ready` semaphore until the parent finishes all forks.
+ * 2. Initializes the local survival timer (`last_meal`).
+ * 3. Starts the monitoring thread for this specific process.
+ * 4. Handles the single philosopher edge case.
+ * 5. Staggers even-numbered philosophers to reduce initial contention.
+ * 6. Enters the infinite `philo_routine` loop.
  * @param philo Pointer to the philosopher structure.
  */
 void	dining(t_philo *philo)
 {
 	philo->pid = 0;
-	philo->last_meal = philo->data->start_time;
+	safe_sem(philo->data, philo->data->ready, WAIT);
+	philo->last_meal = ft_gettimeofday_ms();
 	if (!safe_thread(&philo->monitor, &monitor_philo_status, philo, CREATE))
 		exit_error(philo->data, TH_CREATE);
 	if (philo->data->total_philos == 1)
