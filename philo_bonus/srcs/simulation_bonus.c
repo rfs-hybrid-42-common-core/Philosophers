@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 15:04:25 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/31 14:29:37 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/04/02 21:32:52 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void	simulation(t_data *data)
 	long	i;
 
 	meal_pid = -1;
-	data->start_time = ft_gettimeofday_ms();
+	data->start_time = ft_gettimeofday_ms() + (data->total_philos * 2);
 	start_processes(data);
 	i = -1;
 	while (++i < data->total_philos)
@@ -135,7 +135,7 @@ void	simulation(t_data *data)
 	if (data->total_meals != -1)
 		meal_pid = start_meal_monitor(data);
 	waitpid(-1, NULL, 0);
-	if (usleep(5000) != 0)
+	if (ft_msleep(5) != 0)
 		exit_error(data, SLEEP);
 	kill_all_philos(data);
 	if (meal_pid != -1)
