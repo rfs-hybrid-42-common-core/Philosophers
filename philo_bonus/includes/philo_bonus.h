@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 01:07:04 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/31 14:28:53 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/04/02 21:48:23 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@
 
 /**
  * @def SEM_WAITER
- * @brief Name of the semaphore used to limit concurrent diners 
- * (total_philos - 1) to prevent deadlocks.
+ * @brief Name of the semaphore used to limit concurrent diners to prevent 
+ * deadlocks.
  */
 # define SEM_WAITER	"/philo_waiter"
 

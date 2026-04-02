@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 00:18:20 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/31 14:21:09 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/04/02 22:13:15 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ static void	parse_args(t_data *data, int argc, char **argv)
  */
 void	init(t_data *data, int argc, char **argv)
 {
+	long	waiter_count;
 	long	i;
 
 	parse_args(data, argc, argv);
@@ -175,7 +176,8 @@ void	init(t_data *data, int argc, char **argv)
 	data->print = sem_open(SEM_PRINT, O_CREAT, 0644, 1);
 	data->full = sem_open(SEM_FULL, O_CREAT, 0644, 0);
 	data->ready = sem_open(SEM_READY, O_CREAT, 0644, 0);
-	data->waiter = sem_open(SEM_WAITER, O_CREAT, 0644, data->total_philos - 1);
+	waiter_count = data->total_philos / 2 + (data->total_philos == 1);
+	data->waiter = sem_open(SEM_WAITER, O_CREAT, 0644, waiter_count);
 	data->forks = sem_open(SEM_FORKS, O_CREAT, 0644, data->total_philos);
 	if (data->print == SEM_FAILED || data->full == SEM_FAILED
 		|| data->ready == SEM_FAILED || data->waiter == SEM_FAILED
