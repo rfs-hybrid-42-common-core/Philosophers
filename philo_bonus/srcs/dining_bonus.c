@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 15:43:32 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/31 14:29:19 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/04/02 20:51:31 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,9 @@ void	dining(t_philo *philo)
 {
 	philo->pid = 0;
 	safe_sem(philo->data, philo->data->ready, WAIT);
-	philo->last_meal = ft_gettimeofday_ms();
+	while (ft_gettimeofday_ms() < philo->data->start_time)
+		usleep(100);
+	philo->last_meal = philo->data->start_time;
 	if (!safe_thread(&philo->monitor, &monitor_philo_status, philo, CREATE))
 		exit_error(philo->data, TH_CREATE);
 	if (philo->data->total_philos == 1)
