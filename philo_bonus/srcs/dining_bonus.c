@@ -93,7 +93,8 @@ static void	eating_sleeping(t_data *data, t_philo *philo)
  * 2. Acquires two forks from the global pool.
  * 3. Eats (updates `last_meal`, signals `full` if quota reached).
  * 4. Sleeps.
- * 5. Thinks.
+ * 5. Thinks (with calculated delay for odd number of philosophers to prevent 
+ * starvation).
  * @param data  Pointer to the shared data.
  * @param philo Pointer to the philosopher.
  */
@@ -109,7 +110,7 @@ static void	philo_routine(t_data *data, t_philo *philo)
 		time_to_think = (data->time_to_eat * 2) - data->time_to_sleep;
 		if (time_to_think < 0)
 			time_to_think = 0;
-		if (time_to_think > 0 && ft_msleep(time_to_think) != 0)
+		if (time_to_think > 0 && ft_msleep(time_to_think * 0.95) != 0)
 			exit_error(data, SLEEP);
 		if (usleep(500) != 0)
 			exit_error(data, SLEEP);
