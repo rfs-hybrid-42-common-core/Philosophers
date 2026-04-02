@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/18 15:43:32 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/31 14:39:55 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/04/02 21:24:34 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,8 +144,7 @@ static bool	philo_routine(t_data *data, t_philo *philo)
 			time_to_think = 0;
 		if (time_to_think > 0 && ft_msleep(data, time_to_think * 0.95) != 0)
 			exit_error(data, SLEEP, data->total_philos);
-		if (usleep(500) != 0)
-			exit_error(data, SLEEP, data->total_philos);
+		usleep(500);
 	}
 	return (true);
 }
@@ -180,8 +179,7 @@ void	*dining(void *arg)
 			break ;
 		}
 		safe_mutex(data, &data->ready_mtx, UNLOCK, data->total_philos);
-		if (usleep(50) != 0)
-			exit_error(data, SLEEP, data->total_philos);
+		usleep(50);
 	}
 	if (philo->philo_id % 2 == 0 && ft_msleep(data, 10) != 0)
 		exit_error(data, SLEEP, data->total_philos);

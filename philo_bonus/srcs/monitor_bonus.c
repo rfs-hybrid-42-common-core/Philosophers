@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:18:03 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/31 01:45:09 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/04/02 21:38:47 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ void	*monitor_philo_status(void *arg)
 			safe_print(philo, PHILO_DEAD);
 			exit(EXIT_FAILURE);
 		}
-		if (usleep(500) != 0)
-			exit_error(philo->data, SLEEP);
+		usleep(500);
 	}
 	return (NULL);
 }

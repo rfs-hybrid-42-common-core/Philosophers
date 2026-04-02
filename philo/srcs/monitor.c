@@ -6,7 +6,7 @@
 /*   By: maaugust <maaugust@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:18:03 by maaugust          #+#    #+#             */
-/*   Updated: 2026/03/31 01:25:48 by maaugust         ###   ########.fr       */
+/*   Updated: 2026/04/02 21:24:54 by maaugust         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ static void	wait_until_all_philos_ready(t_data *data)
 			break ;
 		}
 		safe_mutex(data, &data->ready_mtx, UNLOCK, data->total_philos);
-		if (usleep(50) != 0)
-			exit_error(data, SLEEP, data->total_philos);
+		usleep(50);
 	}
 }
 
@@ -60,8 +59,8 @@ static void	initialize_timer(t_data *data)
 	safe_mutex(data, &data->ready_mtx, LOCK, data->total_philos);
 	data->start_time = start_time;
 	safe_mutex(data, &data->ready_mtx, UNLOCK, data->total_philos);
-	if (data->total_philos > 1)
-		ft_msleep(data, data->time_to_die / 2);
+	if (data->total_philos > 1 && ft_msleep(data, data->time_to_die / 2))
+		exit_error(data, SLEEP, data->total_philos);
 }
 
 /**
@@ -144,8 +143,7 @@ void	*monitor(void *arg)
 	{
 		if (check_simulation_state(data))
 			break ;
-		if (usleep(500) != 0)
-			exit_error(data, SLEEP, data->total_philos);
+		usleep(500);
 	}
 	return (NULL);
 }
