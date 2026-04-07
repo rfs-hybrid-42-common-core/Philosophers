@@ -92,9 +92,11 @@ Both the mandatory and bonus executables take the exact same arguments:
 The following tests demonstrate the program's reliability and strict adherence to the project's core requirements. These scenarios confirm the absence of deadlocks, precise death reporting (<10ms), and robust argument parsing.
 
 ### 1. The Single Philosopher Trap
-**Command:** `./philo 1 800 200 200`
-A single philosopher only has access to one fork. They should pick it up, be unable to eat, and accurately die at the 800ms mark.
-
+**Command:** `./philo 1 800 200 200`  
+*A single philosopher only has access to one fork. They should pick it up, be unable to eat, and accurately die at the 800ms mark.*
+<details>
+<summary><b>👉 Click to view execution</b></summary>
+<br>
 <div align="center">
 
 | Mandatory (`philo`) | Bonus (`philo_bonus`) |
@@ -102,11 +104,15 @@ A single philosopher only has access to one fork. They should pick it up, be una
 | <img src="https://github.com/user-attachments/assets/fb04af77-3596-49a9-b84e-bec0c8b1edad" alt="Test 1 Mandatory"> | <img src="https://github.com/user-attachments/assets/91ae96cd-2d30-41d7-b8d2-78b314f87b06" alt="Test 1 Bonus"> |
 
 </div>
+</details>
+<br>
 
 ### 2. Standard Survival (Odd Number)
-**Command:** `./philo 5 800 200 200`
-With plenty of time to eat and sleep, no philosopher should die. The resource hierarchy perfectly manages the odd number of forks.
-
+**Command:** `./philo 5 800 200 200`  
+*With plenty of time to eat and sleep, no philosopher should die. The resource hierarchy perfectly manages the odd number of forks.*
+<details>
+<summary><b>👉 Click to view execution</b></summary>
+<br>
 <div align="center">
 
 | Mandatory (`philo`) | Bonus (`philo_bonus`) |
@@ -114,11 +120,15 @@ With plenty of time to eat and sleep, no philosopher should die. The resource hi
 | <img src="https://github.com/user-attachments/assets/cd257509-bcc6-45af-a35d-b9694690ba9d" alt="Test 2 Mandatory"> | <img src="https://github.com/user-attachments/assets/447c49b1-0dd3-4df6-bed7-9138656cdbd0" alt="Test 2 Bonus"> |
 
 </div>
+</details>
+<br>
 
 ### 3. Meal Quota Reached
-**Command:** `./philo 5 800 200 200 7`
-No philosopher should die, and the simulation must cleanly exit the exact moment all philosophers have eaten at least 7 times.
-
+**Command:** `./philo 5 800 200 200 7`  
+*No philosopher should die, and the simulation must cleanly exit the exact moment all philosophers have eaten at least 7 times.*
+<details>
+<summary><b>👉 Click to view execution</b></summary>
+<br>
 <div align="center">
 
 | Mandatory (`philo`) | Bonus (`philo_bonus`) |
@@ -126,11 +136,15 @@ No philosopher should die, and the simulation must cleanly exit the exact moment
 | <img src="https://github.com/user-attachments/assets/80f86754-0935-4901-89d3-1638b742615e" alt="Test 3 Mandatory"> | <img src="https://github.com/user-attachments/assets/6cf5d203-967b-45bb-a468-77e77bf4b973" alt="Test 3 Bonus"> |
 
 </div>
+</details>
+<br>
 
 ### 4. Tight Survival Margin (Even Number)
-**Command:** `./philo 4 410 200 200`
-A highly synchronized test. No philosopher should die, proving that the desynchronization algorithms prevent fork starvation.
-
+**Command:** `./philo 4 410 200 200`  
+*A highly synchronized test. No philosopher should die, proving that the desynchronization algorithms prevent fork starvation.*
+<details>
+<summary><b>👉 Click to view execution</b></summary>
+<br>
 <div align="center">
 
 | Mandatory (`philo`) | Bonus (`philo_bonus`) |
@@ -138,11 +152,15 @@ A highly synchronized test. No philosopher should die, proving that the desynchr
 | <img src="https://github.com/user-attachments/assets/a8320f65-e2cf-4bc4-b0c0-cb56e1e020e5" alt="Test 4 Mandatory"> | <img src="https://github.com/user-attachments/assets/ebe11262-42d4-4267-8342-615bc396d53e" alt="Test 4 Bonus"> |
 
 </div>
+</details>
+<br>
 
 ### 5. Fork Stealing & Contention (Even Number)
-**Command:** `./philo 4 410 200 100`
-Because the sleep time is significantly lower than the eating time, a philosopher might wake up and try to steal a fork from someone who has been waiting longer. The internal scheduling logic prevents this contention, allowing all to survive.
-
+**Command:** `./philo 4 410 200 100`  
+*Because the sleep time is significantly lower than the eating time, a philosopher might wake up and try to steal a fork from someone who has been waiting longer. The internal scheduling logic prevents this contention, allowing all to survive.*
+<details>
+<summary><b>👉 Click to view execution</b></summary>
+<br>
 <div align="center">
 
 | Mandatory (`philo`) | Bonus (`philo_bonus`) |
@@ -150,11 +168,15 @@ Because the sleep time is significantly lower than the eating time, a philosophe
 | <img src="https://github.com/user-attachments/assets/5ab9e326-a1d8-4aed-a00b-cba71214bc7b" alt="Test 5 Mandatory"> | <img src="https://github.com/user-attachments/assets/d3885ec4-a8c4-4389-beb9-9b712dcbd160" alt="Test 5 Bonus"> |
 
 </div>
+</details>
+<br>
 
 ### 6. Inevitable Death
-**Command:** `./philo 4 310 200 100`
-A philosopher should die. The program detects and prints the death message precisely at the time limit.
-
+**Command:** `./philo 4 310 200 100`  
+*A philosopher should die. The program detects and prints the death message precisely at the time limit.*
+<details>
+<summary><b>👉 Click to view execution</b></summary>
+<br>
 <div align="center">
 
 | Mandatory (`philo`) | Bonus (`philo_bonus`) |
@@ -162,11 +184,15 @@ A philosopher should die. The program detects and prints the death message preci
 | <img src="https://github.com/user-attachments/assets/e028919c-ae73-4bff-ba6a-db61e97d04ea" alt="Test 6 Mandatory"> | <img src="https://github.com/user-attachments/assets/ad04df27-1663-4fde-ae9b-a57a036a8340" alt="Test 6 Bonus"> |
 
 </div>
+</details>
+<br>
 
 ### 7. Strict Timing Constraints
-**Command:** `./philo 5 601 200 200 7`
-This pushes the threading limits. The philosophers have exactly 1ms of leeway before starving, yet the simulation perfectly survives to 7 meals.
-
+**Command:** `./philo 5 601 200 200 7`  
+*This pushes the threading limits. The philosophers have exactly 1ms of leeway before starving, yet the simulation perfectly survives to 7 meals.*
+<details>
+<summary><b>👉 Click to view execution</b></summary>
+<br>
 <div align="center">
 
 | Mandatory (`philo`) | Bonus (`philo_bonus`) |
@@ -174,11 +200,15 @@ This pushes the threading limits. The philosophers have exactly 1ms of leeway be
 | <img src="https://github.com/user-attachments/assets/f166a594-874b-418c-9a35-c820356d11e3" alt="Test 7 Mandatory"> | <img src="https://github.com/user-attachments/assets/078cea08-3e03-45b4-83a2-6c5260272665" alt="Test 7 Bonus"> |
 
 </div>
+</details>
+<br>
 
 ### 8. Max Capacity Stress Test (Even Number)
-**Command:** `./philo 200 800 200 200`
-Testing the upper limits. The program spawns and manages 200 concurrent threads (or processes) seamlessly, proving perfect symmetry in resource allocation.
-
+**Command:** `./philo 200 800 200 200`  
+*Testing the upper limits. The program spawns and manages 200 concurrent threads (or processes) seamlessly, proving perfect symmetry in resource allocation.*
+<details>
+<summary><b>👉 Click to view execution</b></summary>
+<br>
 <div align="center">
 
 | Mandatory (`philo`) | Bonus (`philo_bonus`) |
@@ -186,11 +216,15 @@ Testing the upper limits. The program spawns and manages 200 concurrent threads 
 | <img src="https://github.com/user-attachments/assets/81065848-838a-4e9d-92e4-d129848aa68c" alt="Test 8 Mandatory"> | <img src="https://github.com/user-attachments/assets/a494e720-e00b-4a3c-8b98-5b9cef0d7f2f" alt="Test 8 Bonus"> |
 
 </div>
+</details>
+<br>
 
 ### 9. Max Capacity Stress Test (Odd Number)
-**Command:** `./philo 199 800 200 200`
-Testing the limits with an odd number of philosophers. The program must flawlessly handle the asymmetrical "odd-man-out" delay at massive scale without deadlocking or dropping performance.
-
+**Command:** `./philo 199 800 200 200`  
+*Testing the limits with an odd number of philosophers. The program must flawlessly handle the asymmetrical "odd-man-out" delay at massive scale without deadlocking or dropping performance.*
+<details>
+<summary><b>👉 Click to view execution</b></summary>
+<br>
 <div align="center">
 
 | Mandatory (`philo`) | Bonus (`philo_bonus`) |
@@ -198,10 +232,14 @@ Testing the limits with an odd number of philosophers. The program must flawless
 | <img src="https://github.com/user-attachments/assets/72e61cb0-6037-42f6-8e3e-98b9b8cd4a46" alt="Test 9 Mandatory"> | <img src="https://github.com/user-attachments/assets/24c95118-a59f-41ac-ab2d-a5aee5e6819d" alt="Test 9 Bonus"> |
 
 </div>
+</details>
+<br>
 
 ### 10. Parser & Error Handling
-Robust input validation. The program safely catches invalid arguments, non-numeric characters, and missing parameters without memory leaks.
-
+*Robust input validation. The program safely catches invalid arguments, non-numeric characters, and missing parameters without memory leaks.*
+<details>
+<summary><b>👉 Click to view execution</b></summary>
+<br>
 <div align="center">
 
 | Mandatory (`philo`) | Bonus (`philo_bonus`) |
@@ -209,6 +247,8 @@ Robust input validation. The program safely catches invalid arguments, non-numer
 | <img src="https://github.com/user-attachments/assets/de63b9dd-139b-4bb6-aac3-05820c49d675" alt="Test 10 Mandatory"> | <img src="https://github.com/user-attachments/assets/f11fc777-cf78-425d-9718-ce10fa43039c" alt="Test 10 Bonus"> |
 
 </div>
+</details>
+<br>
 
 ---
 
